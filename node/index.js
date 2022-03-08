@@ -12,9 +12,11 @@ const config = {
 
 const connection = mysql.createConnection(config);
 
+const sqlCreate = 'CREATE TABLE IF NOT EXISTS people (id int auto_increment primary key, name varchar(255))'
 const sqlInsert = `INSERT INTO people(name) VALUES('Eduardo')`;
 const sqlSelect = `SELECT id, name FROM people`;
 let list = '';
+connection.query(sqlCreate);
 connection.query(sqlInsert);
 connection.query(sqlSelect, (err, result, fields) => {
     if(err){
